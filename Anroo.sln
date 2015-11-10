@@ -14,6 +14,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anroo.MiLight.Tests", "Anroo.MiLight.Tests\Anroo.MiLight.Tests.csproj", "{051CD90F-4C64-4AA7-9E11-7194D8004D18}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MiLight", "MiLight", "{42791FA4-C241-4FB2-992A-80417E62DCE4}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D19518B7-097C-4D47-AF28-FA8C4B8B085D}"
 	ProjectSection(SolutionItems) = preProject
