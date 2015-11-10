@@ -8,6 +8,7 @@ using Xunit;
 
 namespace Anroo.Tests.MiLight
 {
+    [Trait("Category", "IgnoreForCI")]
     public class MLBulbControllerTests
     {
         private static readonly TimeSpan DelayBetweenCommands = TimeSpan.FromSeconds(2);
