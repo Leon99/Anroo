@@ -21,6 +21,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D19518B7-097C-4D47-AF28-FA8C4B8B085D}"
 	ProjectSection(SolutionItems) = preProject
 		AssemblyInfo.Anroo.cs = AssemblyInfo.Anroo.cs
+		LICENCE.txt = LICENCE.txt
 	EndProjectSection
 EndProject
 Global

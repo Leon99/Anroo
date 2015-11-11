@@ -1,6 +1,6 @@
 # Anroo
 
-Library and a console app for controlling Milight LED bulbs (also known as EasyBulb/LimitlessLED).
+Library and a console app for controlling Milight LED bulbs (also known as EasyBulb/LimitlessLED). Supports 'Dual White' and RGBW bulbs.
 
 Requires .NET Framework 4.5.1.
 
