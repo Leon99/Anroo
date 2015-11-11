@@ -54,17 +54,21 @@ Usage:
       {BulbCommandName.RGBWOff}
       {BulbCommandName.RGBWNight}
       {BulbCommandName.White}
-      {BulbCommandName.Brightness} <brightness> (2-27)
-      {BulbCommandName.Color} <color> (0-255)
+      {BulbCommandName.Brightness}
+         <param>: brightness, possible values: 2-27
+      {BulbCommandName.Color}
+         <param>: color code, possible values: 0-255
       {BulbCommandName.Disco}
       {BulbCommandName.DiscoFaster}
       {BulbCommandName.DiscoSlower}
 
 Options:
-  -? --help               Show this screen.
-  --discover              Trigger autodiscovery and show IP addresses of available bridges.
-  --bridge=<bridgeIP>     IP address of the bridge to use.
-                          Will be stored as default when used without the command.";
+  -? --help             Show this screen.
+  
+  --discover            Show available bridges.
+
+  --bridge=<bridgeIP>   IP address of the bridge to use.
+                        Will be stored as default when used without the command.";
 
         private readonly IDictionary<string, ValueObject> _args;
         public MainArgs(ICollection<string> argv, bool help = true,
