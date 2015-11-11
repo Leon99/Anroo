@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+	<metadata>
+		<id>milightcli</id>
+		<title>Milight CLI</title>
+		<version>1.0</version>
+		<authors>Leon Volovyk</authors>
+		<owners>Leon Volovyk</owners>
+		<summary>Command line tool for controlling Milight-compatible LED bulbs</summary>
+		<description>Command line tool for controlling Milight LED bulbs (also known as EasyBulb/LimitlessLED). Supports Dual White and RGBW bulbs.
+		</description>
+		<projectUrl>https://github.com/Leon99/Anroo</projectUrl>
+		<tags>homeautomation anroo</tags>
+		<projectSourceUrl>https://github.com/Leon99/Anroo</projectSourceUrl>
+		<bugTrackerUrl>https://github.com/Leon99/Anroo</bugTrackerUrl>
+		<copyright>Copyright (c) 2015 Leonid Volovyk</copyright>
+		<licenseUrl>https://raw.githubusercontent.com/Leon99/Anroo/master/LICENCE.txt</licenseUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<dependencies>
+			<dependency id="DotNet4.5.1" />
+		</dependencies>
+	</metadata>
+	<files>
+		<file src="*.exe" target="lib" />
+		<file src="*.dll" target="lib" />
+	</files>
+</package>
