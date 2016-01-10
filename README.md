@@ -1,6 +1,6 @@
 # Anroo
 
-Library and console apps for controlling afffordable UDP-based devices for 'smart home' automation:
+Libraries and console apps for controlling affordable devices that enable 'smart home' automation:
 - Milight LED bulbs (also known as EasyBulb/LimitlessLED). 'Dual White' and RGBW bulbs are supported;
 - Orvibo S20 Wi-Fi outlet switch and its clones.
 
