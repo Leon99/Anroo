@@ -37,7 +37,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>
-    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Anroo.MiLight.Cli\Anroo.MiLight.Cli.csproj">

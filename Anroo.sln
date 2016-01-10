@@ -19,6 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		AssemblyInfo.Anroo.cs = AssemblyInfo.Anroo.cs
 		LICENCE.txt = LICENCE.txt
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anroo.MiLight.Cli.Choco", "Anroo.MiLight.Cli.Choco\Anroo.MiLight.Cli.Choco.csproj", "{46B9BD05-BC23-4701-820F-2A602790AB50}"
