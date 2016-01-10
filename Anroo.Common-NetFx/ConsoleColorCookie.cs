@@ -1,6 +1,6 @@
 using System;
 
-namespace Anroo.MiLight.Cli
+namespace Anroo.Common
 {
     public class ConsoleColorCookie : IDisposable
     {

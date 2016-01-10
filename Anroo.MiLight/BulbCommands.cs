@@ -1,6 +1,6 @@
 namespace Anroo.MiLight
 {
-    internal static class MLBulbCommands
+    internal static class BulbCommands
     {
         public static class DualWhite
         {

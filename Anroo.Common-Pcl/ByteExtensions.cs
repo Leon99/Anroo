@@ -1,4 +1,4 @@
-namespace Anroo.MiLight.Cli
+namespace Anroo.Common
 {
     public static class ByteExtensions
     {

@@ -1,4 +1,4 @@
-﻿namespace Anroo.OrviboS20
+﻿namespace Anroo.Common
 {
     public struct ValueChangedEventArgs<T>
     {

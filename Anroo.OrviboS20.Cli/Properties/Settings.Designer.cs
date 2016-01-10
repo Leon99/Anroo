@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Anroo.MiLight.Cli.Properties {
+namespace Anroo.OrviboS20.Cli.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -26,12 +26,24 @@ namespace Anroo.MiLight.Cli.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string ThingIP {
+        public string ThingMac {
             get {
-                return ((string)(this["ThingIP"]));
+                return ((string)(this["ThingMac"]));
             }
             set {
-                this["ThingIP"] = value;
+                this["ThingMac"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ThingIp {
+            get {
+                return ((string)(this["ThingIp"]));
+            }
+            set {
+                this["ThingIp"] = value;
             }
         }
     }

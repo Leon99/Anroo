@@ -1,49 +1,52 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Text.RegularExpressions;
+using System.Net.Sockets;
+using System.Text;
 using System.Threading.Tasks;
 using Anroo.Common;
+using Anroo.Common.Udp;
 
 namespace Anroo.MiLight
 {
     public static class MLBridgeManager
     {
         internal const string DiscoverRequest = "Link_Wi-Fi";
+        private const int BridgeControlPort = 48899;
 
-        internal static readonly Regex DiscoverResponseRegex = new Regex(
-                $@"^(?<{DiscoverResponseIpGroupName}>\b\d{{1,3}}\.\d{{1,3}}\.\d{{1,3}}\.\d{{1,3}}\b),.*(?<{DiscoverResponseMacGroupName}>[0-9a-zA-Z]{{12}}).*$");
-
-        private const string DiscoverResponseIpGroupName = "ip";
-        private const string DiscoverResponseMacGroupName = "mac";
-
-        public static async Task<IEnumerable<HostIdentity>> DiscoverBridgesAsync(IPAddress localIP = null)
+        public static async Task<IEnumerable<HostIdentity>> DiscoverAsync(IPAddress controllerIP = null)
         {
-            var bridges = new Dictionary<string, string>();
-            using (var client = new UdpTransceiver(new IPEndPoint(IPAddress.Broadcast, 48899), localIP) {RepeatNumber = 10} )
+            var discoveredThings = new Dictionary<string, string>();
+            using (var transceiver = CreateTransceiver(controllerIP))
             {
-                await client.SendDataAsync(DiscoverRequest);
-                string data;
-                while (!String.IsNullOrEmpty(data = await client.ReceiveStringAsync()))
-                {
-                    var ma = DiscoverResponseRegex.Match(data);
-                    if (!ma.Success)
-                    {
-                        continue;
-                    }
-                    var mac = ma.Groups[DiscoverResponseMacGroupName].Value;
-                    if (!bridges.ContainsKey(mac))
-                    {
-                        bridges.Add(mac, ma.Groups[DiscoverResponseIpGroupName].Value);
-                    }
-                }
+                await transceiver.SendDataAsync(DiscoverRequest);
+                await transceiver.ReceiveUntilAsync(result => ProcessReceiveResults(result, discoveredThings));
             }
-            return bridges.Select(pair => new HostIdentity
+            return discoveredThings.Select(pair => new HostIdentity
             {
                 IPAddress = IPAddress.Parse(pair.Value),
                 MacAddress = ByteArrayHelpers.FromString(pair.Key)
             });
+        }
+
+        private static bool ProcessReceiveResults(UdpReceiveResult result, Dictionary<string, string> discoveredThings)
+        {
+            var response = Encoding.UTF8.GetString(result.Buffer);
+            DiscoverCommandResponse parsedResponse;
+            if (!DiscoverCommandResponse.TryParse(response, out parsedResponse))
+            {
+                return false;
+            }
+            if (!discoveredThings.ContainsKey(parsedResponse.Mac))
+            {
+                discoveredThings.Add(parsedResponse.Mac, parsedResponse.IP);
+            }
+            return false;
+        }
+
+        private static UdpTransceiver CreateTransceiver(IPAddress controllerIP)
+        {
+            return new UdpTransceiver(new IPEndPoint(IPAddress.Broadcast, BridgeControlPort), controllerIP) {SendRepeats = 10};
         }
     }
 }

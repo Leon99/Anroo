@@ -37,25 +37,25 @@ namespace Anroo.MiLight
         public async Task BrightnessUpAsync(MLBulbGroupCode? group = null)
         {
             await SendCommandToGroupAsync(GroupCommands.DWOn, group);
-            await SendCommandAsync(MLBulbCommands.DualWhite.BrightnessUp);
+            await SendCommandAsync(BulbCommands.DualWhite.BrightnessUp);
         }
 
         public async Task BrightnessDownAsync(MLBulbGroupCode? group = null)
         {
             await SendCommandToGroupAsync(GroupCommands.DWOn, group);
-            await SendCommandAsync(MLBulbCommands.DualWhite.BrightnessDown);
+            await SendCommandAsync(BulbCommands.DualWhite.BrightnessDown);
         }
 
         public async Task ColorTemperatureUpAsync(MLBulbGroupCode? group = null)
         {
             await SendCommandToGroupAsync(GroupCommands.DWOn, group);
-            await SendCommandAsync(MLBulbCommands.DualWhite.ColorTemperatureUp);
+            await SendCommandAsync(BulbCommands.DualWhite.ColorTemperatureUp);
         }
 
         public async Task ColorTemperatureDownAsync(MLBulbGroupCode? group = null)
         {
             await SendCommandToGroupAsync(GroupCommands.DWOn, group);
-            await SendCommandAsync(MLBulbCommands.DualWhite.ColorTemperatureDown);
+            await SendCommandAsync(BulbCommands.DualWhite.ColorTemperatureDown);
         }
 
         public async Task DWBrightnessFadeDownAsync(MLBulbGroupCode? group = null, int delay = 1000, CancellationToken? ct = null)
@@ -65,7 +65,7 @@ namespace Anroo.MiLight
             {
                 if ((ct != null) && ct.Value.CanBeCanceled && ct.Value.IsCancellationRequested)
                     break;
-                await SendCommandAsync(MLBulbCommands.DualWhite.BrightnessDown);
+                await SendCommandAsync(BulbCommands.DualWhite.BrightnessDown);
             }
         }
 
@@ -76,7 +76,7 @@ namespace Anroo.MiLight
             {
                 if ((ct != null) && ct.Value.CanBeCanceled && ct.Value.IsCancellationRequested)
                     break;
-                await SendCommandAsync(MLBulbCommands.DualWhite.BrightnessUp);
+                await SendCommandAsync(BulbCommands.DualWhite.BrightnessUp);
             }
         }
     }

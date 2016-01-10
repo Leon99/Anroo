@@ -1,31 +1,32 @@
 using System;
+using System.Diagnostics.Contracts;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Anroo.Common
+namespace Anroo.Common.Udp
 {
     public class UdpTransmitter : IDisposable
     {
         public const int DefaultDelayAfterSending = 110;
-        public const int DelayAfterSending = DefaultDelayAfterSending;
-        public int RepeatNumber { get; set; } = 1;
+        public int DelayAfterSend = DefaultDelayAfterSending;
+        public int SendRepeats { get; set; } = 1;
 
         protected UdpClient UdpClient;
         private readonly IPEndPoint _remoteEP;
-        private readonly bool broadcasting;
+        private readonly bool _isBroadcast;
 
         public UdpTransmitter(IPEndPoint remoteEP, IPEndPoint localEP = null)
         {
             _remoteEP = remoteEP;
             UdpClient = localEP != null 
-                ? new UdpClient(localEP) 
+                ? new UdpClient(localEP)
                 : new UdpClient();
             if (remoteEP != null)
             {
-                broadcasting = Equals(remoteEP.Address, IPAddress.Broadcast);
-                if (broadcasting)
+                _isBroadcast = Equals(remoteEP.Address, IPAddress.Broadcast);
+                if (_isBroadcast)
                 {
                     UdpClient.EnableBroadcast = true;
                     UdpClient.Client.MulticastLoopback = false;
@@ -37,18 +38,25 @@ namespace Anroo.Common
             }
         }
 
-        public async Task SendDataAsync(string data)
+        public async Task SendDataAsync(string data, int? sendRepeats = null)
         {
+            if (data == null) throw new ArgumentNullException(nameof(data));
+            Contract.EndContractBlock();
+
             await SendDataAsync(Encoding.UTF8.GetBytes(data));
         }
 
-        public async Task SendDataAsync(byte[] data)
+        public async Task SendDataAsync(byte[] data, int? sendRepeats = null)
         {
-            for (int i = 0; i < RepeatNumber; i++)
+            if (data == null) throw new ArgumentNullException(nameof(data));
+            Contract.EndContractBlock();
+
+            int effectiveSendRepeats = sendRepeats ?? SendRepeats;
+            for (int i = 0; i < effectiveSendRepeats; i++)
             {
-                await UdpClient.SendAsync(data, broadcasting ? _remoteEP : null);
+                await UdpClient.SendAsync(data, _isBroadcast ? _remoteEP : null);
+                await DelayAsync(DelayAfterSend);
             }
-            await DelayAsync();
         }
 
         public void Close()
@@ -56,12 +64,9 @@ namespace Anroo.Common
             UdpClient?.Close();
         }
 
-        public async Task DelayAsync(int? duration = null)
+        public async Task DelayAsync(int duration)
         {
-            if (duration > 0)
-            {
-                await Task.Delay(duration.GetValueOrDefault(DelayAfterSending));
-            }
+            await Task.Delay(duration);
         }
 
         public void Dispose()

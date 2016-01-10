@@ -1,22 +1,24 @@
 using System;
 using System.Diagnostics;
-using Anroo.MiLight.Cli;
 
-public static class ConsoleHelpers
+namespace Anroo.Common
 {
-    public static void WriteError(string text)
+    public static class ConsoleHelpers
     {
-        using (new ConsoleColorCookie(ConsoleColor.Red))
+        public static void WriteError(string text)
         {
-            Console.Error.WriteLine($"ERROR: {text}");
+            using (new ConsoleColorCookie(ConsoleColor.Red))
+            {
+                Console.Error.WriteLine($"ERROR: {text}");
+            }
         }
-    }
 
-    [Conditional("DEBUG")]
-    public static void WaitForEnter()
-    {
-        Console.WriteLine();
-        Console.WriteLine("Press <Enter> to continue.");
-        Console.ReadLine();
+        [Conditional("DEBUG")]
+        public static void WaitForEnter()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Press <Enter> to continue.");
+            Console.ReadLine();
+        }
     }
 }

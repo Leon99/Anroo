@@ -1,6 +1,6 @@
 using System.Net;
 
-namespace Anroo.MiLight
+namespace Anroo.Common
 {
     // TODO move to PCL after retargeting to NetFX 4.6
     public class HostIdentity

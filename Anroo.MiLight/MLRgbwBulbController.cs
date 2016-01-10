@@ -28,19 +28,19 @@ namespace Anroo.MiLight
         public async Task DiscoModeAsync(MLBulbGroupCode? group = null)
         {
             await SendCommandToGroupAsync(GroupCommands.RgbwOn, group);
-            await SendCommandAsync(MLBulbCommands.Rgbw.DiscoMode);
+            await SendCommandAsync(BulbCommands.Rgbw.DiscoMode);
         }
 
         public async Task DiscoSpeedSlowerAsync(MLBulbGroupCode? group = null)
         {
             await SendCommandToGroupAsync(GroupCommands.RgbwOn, group);
-            await SendCommandAsync(MLBulbCommands.Rgbw.DiscoSpeedSlower);
+            await SendCommandAsync(BulbCommands.Rgbw.DiscoSpeedSlower);
         }
 
         public async Task DiscoSpeedFasterAsync(MLBulbGroupCode? group = null)
         {
             await SendCommandToGroupAsync(GroupCommands.RgbwOn, group);
-            await SendCommandAsync(MLBulbCommands.Rgbw.DiscoSpeedFaster);
+            await SendCommandAsync(BulbCommands.Rgbw.DiscoSpeedFaster);
         }
 
         public async Task WhiteModeAsync(MLBulbGroupCode? group = null)
@@ -60,7 +60,7 @@ namespace Anroo.MiLight
                 level = MLDWBulbController.MaxBrightness;
             }
 
-            var cmd = (byte[])MLBulbCommands.Rgbw.Brightness.Clone();
+            var cmd = (byte[])BulbCommands.Rgbw.Brightness.Clone();
             cmd[1] = level;
             await SendCommandToGroupAsync(GroupCommands.RgbwOn, group);
             await SendCommandAsync(cmd);
@@ -68,7 +68,7 @@ namespace Anroo.MiLight
 
         public async Task ColorAsync(byte color, MLBulbGroupCode? group = null)
         {
-            var cmd = (byte[])MLBulbCommands.Rgbw.Color.Clone();
+            var cmd = (byte[])BulbCommands.Rgbw.Color.Clone();
             cmd[1] = color;
             await SendCommandToGroupAsync(GroupCommands.RgbwOn, group);
             await SendCommandAsync(cmd);

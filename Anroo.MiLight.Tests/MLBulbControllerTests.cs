@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
-using Anroo.MiLight;
+using Anroo.Common;
 using Should;
 using Xunit;
 
-namespace Anroo.Tests.MiLight
+namespace Anroo.MiLight.Tests
 {
     [Trait("Category", "IgnoreForCI")]
     public class MLBulbControllerTests
@@ -136,15 +137,27 @@ namespace Anroo.Tests.MiLight
             }
         }
 
-        private static IEnumerable<HostIdentity> DiscoverBridges()
+        [Fact]
+        public void Rgbw_SingleGroupSequenceTest()
         {
-            //var localIP = IPAddress.Parse("192.168.1.9");
-            var bridgeAddresses = MLBridgeManager.DiscoverBridgesAsync().Result;
+            for (int i = 0; i < 50; i++)
+            {
+                using (var bulbController = new MLRgbwBulbController(IPAddress.Parse("192.168.1.42")))
+                {
+                    bulbController.OnAsync(MLBulbGroupCode.Two).Wait();
+                }
+                Pause();
+            }
+        }
 
-            bridgeAddresses.Any()
+        public static IEnumerable<HostIdentity> DiscoverBridges()
+        {
+            var discoveredAddresses = MLBridgeManager.DiscoverAsync(NetworkTools.GetLocalIPAddress("Wi-Fi")).Result;
+
+            discoveredAddresses.Any()
                 .ShouldBeTrue();
 
-            return bridgeAddresses;
+            return discoveredAddresses;
         }
 
         private static void Pause()
