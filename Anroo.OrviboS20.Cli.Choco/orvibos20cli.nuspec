@@ -9,7 +9,7 @@
 		<owners>Leon Volovyk</owners>
 		<summary>Command line tool for controlling Orvibo S20</summary>
 		<description>
-			Command line tool for controlling Orvibo S20 Wi-Fi outlet switch and its clones.
+			Command line tool for controlling Orvibo S20 Wi-Fi socket and its clones.
 		</description>
 		<projectUrl>https://github.com/Leon99/Anroo</projectUrl>
 		<tags>homeautomation anroo</tags>
