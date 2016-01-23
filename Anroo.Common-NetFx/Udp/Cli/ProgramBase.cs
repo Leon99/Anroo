@@ -24,6 +24,7 @@ namespace Anroo.Common.Udp.Cli
         {
             try
             {
+                _settings.Upgrade();
                 CommandLineArgsBase parsedArgs;
                 try
                 {
@@ -60,7 +61,6 @@ namespace Anroo.Common.Udp.Cli
                         }
                     }
                 }
-
             }
             finally
             {
