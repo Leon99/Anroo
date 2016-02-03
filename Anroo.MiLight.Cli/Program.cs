@@ -134,7 +134,7 @@ namespace Anroo.MiLight.Cli
                 }
                     break;
             }
-            Console.WriteLine($"'{baseParsedArgs.CommandArgumentValue}' command has been sent.");
+            Console.WriteLine($"'{baseParsedArgs.CommandArgumentValue}' command has been sent to group '{groupCode}' via {thingIP}.");
         }
 
         private bool VerifyGroup(CommandLineArgs parsedArgs, out MLBulbGroupCode groupCode)
