@@ -1,4 +1,5 @@
 using System.Net;
+using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -9,7 +10,7 @@ namespace Anroo.MiLight
         public const int MaxBrightness = 27;
         public const int MinBrightness = 2;
 
-        public MLDWBulbController(IPAddress bridgeIP, MLBulbGroupCode defaultGroup = MLBulbGroupCode.All) : base(bridgeIP, defaultGroup)
+        public MLDWBulbController(IPAddress bridgeIP, ProtocolType protocol, MLBulbGroupCode defaultGroup = MLBulbGroupCode.All) : base(bridgeIP, protocol, defaultGroup)
         {
         }
 

@@ -34,5 +34,17 @@ namespace Anroo.MiLight.Cli.Properties {
                 this["ThingIP"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Udp")]
+        public global::System.Net.Sockets.ProtocolType Protocol {
+            get {
+                return ((global::System.Net.Sockets.ProtocolType)(this["Protocol"]));
+            }
+            set {
+                this["Protocol"] = value;
+            }
+        }
     }
 }

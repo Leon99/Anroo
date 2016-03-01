@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Sockets;
 using System.Threading.Tasks;
-using Anroo.Common;
+using Anroo.Common.Network;
 using Should;
 using Xunit;
 
@@ -13,6 +14,7 @@ namespace Anroo.MiLight.Tests
     public class MLBulbControllerTests
     {
         private static readonly TimeSpan DelayBetweenCommands = TimeSpan.FromSeconds(2);
+        private static readonly ProtocolType Protocol = ProtocolType.Tcp;
 
         [Fact]
         public void DualWhite_FullTest()
@@ -21,7 +23,7 @@ namespace Anroo.MiLight.Tests
 
             foreach (var bridgeAddress in bridgeAddresses)
             {
-                var bulbController = new MLDWBulbController(bridgeAddress.IPAddress);
+                var bulbController = new MLDWBulbController(bridgeAddress.IPAddress, Protocol);
                 for (int groupIdx = 0; groupIdx < 5; groupIdx++)
                 {
                     //groupIdx = 3;
@@ -81,7 +83,7 @@ namespace Anroo.MiLight.Tests
 
             foreach (var bridgeAddress in bridgeAddresses)
             {
-                var bulbController = new MLRgbwBulbController(bridgeAddress.IPAddress);
+                var bulbController = new MLRgbwBulbController(bridgeAddress.IPAddress, Protocol);
                 for (int groupIdx = 0; groupIdx < 5; groupIdx++)
                 {
                     //groupIdx = 2;
@@ -140,13 +142,14 @@ namespace Anroo.MiLight.Tests
         [Fact]
         public void Rgbw_SingleGroupSequenceTest()
         {
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < 10; i++)
             {
-                using (var bulbController = new MLRgbwBulbController(IPAddress.Parse("192.168.1.42")))
+                using (var bulbController = new MLRgbwBulbController(IPAddress.Parse("192.168.1.42"), Protocol))
                 {
-                    bulbController.OnAsync(MLBulbGroupCode.Two).Wait();
+                    bulbController.OnAsync(MLBulbGroupCode.Three).Wait();
+                    Pause();
+                    bulbController.OffAsync(MLBulbGroupCode.Three).Wait();
                 }
-                Pause();
             }
         }
 

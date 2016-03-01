@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net.NetworkInformation;
 
-namespace Anroo.Common
+namespace Anroo.Common.Network
 {
     public static class PhysicalAddressFactory
     {

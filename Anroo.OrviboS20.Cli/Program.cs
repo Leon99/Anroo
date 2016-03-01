@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
-using Anroo.Common;
-using Anroo.Common.Udp.Cli;
+using Anroo.Common.Cli;
+using Anroo.Common.Network;
 using Anroo.OrviboS20.Cli.Properties;
 
 namespace Anroo.OrviboS20.Cli

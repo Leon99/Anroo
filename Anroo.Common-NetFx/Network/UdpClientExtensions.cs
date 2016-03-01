@@ -2,7 +2,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
 
-namespace Anroo.Common.Udp
+namespace Anroo.Common.Network
 {
     public static class UdpClientExtensions
     {

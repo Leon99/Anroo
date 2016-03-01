@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using DocoptNet;
 
-namespace Anroo.Common.Udp.Cli
+namespace Anroo.Common.Cli
 {
     public class CommandLineArgsBase
     {

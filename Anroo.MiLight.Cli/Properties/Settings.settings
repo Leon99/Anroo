@@ -5,5 +5,8 @@
     <Setting Name="ThingIP" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="Protocol" Type="System.Net.Sockets.ProtocolType" Scope="User">
+      <Value Profile="(Default)">Udp</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

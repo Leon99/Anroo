@@ -4,16 +4,19 @@ using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
+using Anroo.Common.Network;
 using DocoptNet;
 
-namespace Anroo.Common.Udp.Cli
+namespace Anroo.Common.Cli
 {
     public abstract class ProgramBase<TCommand> where TCommand : struct
     {
-        private readonly ApplicationSettingsBase _settings;
+        protected readonly ApplicationSettingsBase _settings;
 
         protected ProgramBase(ApplicationSettingsBase settings)
         {
+            AppDomain.CurrentDomain.UnhandledException += CommonHelpers.CurrentDomain_UnhandledException;
+
             _settings = settings;
         }
 
@@ -46,25 +49,30 @@ namespace Anroo.Common.Udp.Cli
                 }
                 else
                 {
-                    if (!string.IsNullOrEmpty(parsedArgs.IPOptionValue))
-                    {
-                        if (!StoreIP(parsedArgs.IPOptionValue, _settings))
-                        {
-                            ConsoleHelpers.WriteError("Unable to store specified IP address.");
-                        }
-                    }
-                    if (!string.IsNullOrEmpty(parsedArgs.MacOptionValue))
-                    {
-                        if (!StoreMac(parsedArgs.MacOptionValue, _settings))
-                        {
-                            ConsoleHelpers.WriteError("Unable to store specified MAC address.");
-                        }
-                    }
+                    StoreSettings(parsedArgs);
                 }
             }
             finally
             {
                 ConsoleHelpers.WaitForEnter();
+            }
+        }
+
+        protected virtual void StoreSettings(CommandLineArgsBase baseParsedArgs)
+        {
+            if (!string.IsNullOrEmpty(baseParsedArgs.IPOptionValue))
+            {
+                if (!StoreIP(baseParsedArgs.IPOptionValue, _settings))
+                {
+                    ConsoleHelpers.WriteError("Unable to store specified IP address.");
+                }
+            }
+            if (!string.IsNullOrEmpty(baseParsedArgs.MacOptionValue))
+            {
+                if (!StoreMac(baseParsedArgs.MacOptionValue, _settings))
+                {
+                    ConsoleHelpers.WriteError("Unable to store specified MAC address.");
+                }
             }
         }
 

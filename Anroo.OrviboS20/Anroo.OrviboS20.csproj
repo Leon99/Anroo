@@ -54,7 +54,6 @@
     <Compile Include="OrviboS20Ports.cs" />
     <Compile Include="CommandResponses\OrviboS20SubscribeResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UdpListener.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Anroo.Common-NetFx\Anroo.Common-NetFX.csproj">

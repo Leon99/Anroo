@@ -1,11 +1,12 @@
 using System.Net;
+using System.Net.Sockets;
 using System.Threading.Tasks;
 
 namespace Anroo.MiLight
 {
     public class MLRgbwBulbController : MLBulbController
     {
-        public MLRgbwBulbController(IPAddress bridgeIP, MLBulbGroupCode defaultGroup = MLBulbGroupCode.All) : base(bridgeIP, defaultGroup)
+        public MLRgbwBulbController(IPAddress bridgeIP, ProtocolType protocol, MLBulbGroupCode defaultGroup = MLBulbGroupCode.All) : base(bridgeIP, protocol, defaultGroup)
         {
         }
 

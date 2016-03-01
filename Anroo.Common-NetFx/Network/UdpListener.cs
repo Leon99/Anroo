@@ -6,8 +6,9 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Anroo.OrviboS20
+namespace Anroo.Common.Network
 {
+    [Obsolete]
     internal class UdpListener : IDisposable
     {
         public event EventHandler<UdpReceiveResult> DatagramReceived;

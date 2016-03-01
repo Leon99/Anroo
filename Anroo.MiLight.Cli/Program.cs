@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Net;
+using System.Net.Sockets;
 using Anroo.Common;
-using Anroo.Common.Udp.Cli;
+using Anroo.Common.Cli;
+using Anroo.Common.Network;
 using Anroo.MiLight.Cli.Properties;
 
 namespace Anroo.MiLight.Cli
@@ -27,7 +29,9 @@ namespace Anroo.MiLight.Cli
             CommandLineArgs.CommandName commandName;
             MLBulbGroupCode groupCode;
             IPAddress thingIP;
+            ProtocolType protocol;
 
+            if (!VerifyProtocol(parsedArgs.ProtocolOptionValue, out protocol)) return;
             if (!VerifyIP(baseParsedArgs, out thingIP)) return;
             if (!VerifyCommand(baseParsedArgs, out commandName)) return;
             if (!VerifyGroup(parsedArgs, out groupCode)) return;
@@ -43,7 +47,7 @@ namespace Anroo.MiLight.Cli
                 case CommandLineArgs.CommandName.Warmer:
                 case CommandLineArgs.CommandName.Cooler:
                 {
-                    using (var bulbGroup = new MLDWBulbController(thingIP, groupCode))
+                    using (var bulbGroup = new MLDWBulbController(thingIP, protocol, groupCode))
                     {
                         switch (commandName)
                         {
@@ -85,7 +89,7 @@ namespace Anroo.MiLight.Cli
                 case CommandLineArgs.CommandName.DiscoFaster:
                 case CommandLineArgs.CommandName.DiscoSlower:
                 {
-                    using (var bulbGroup = new MLRgbwBulbController(thingIP, groupCode))
+                    using (var bulbGroup = new MLRgbwBulbController(thingIP, protocol, groupCode))
                     {
                         switch (commandName)
                         {
@@ -134,7 +138,21 @@ namespace Anroo.MiLight.Cli
                 }
                     break;
             }
-            Console.WriteLine($"'{baseParsedArgs.CommandArgumentValue}' command has been sent to group '{groupCode}' via {thingIP}.");
+            Console.WriteLine($"'{baseParsedArgs.CommandArgumentValue}' command has been sent using {protocol.ToString().ToUpperInvariant()} to group '{groupCode}' via {thingIP}.");
+        }
+
+        private bool VerifyProtocol(string protocolStr, out ProtocolType protocol)
+        {
+            protocol = ProtocolType.Udp;
+            if (protocolStr != null)
+            {
+                if (!Enum.TryParse(protocolStr, true, out protocol))
+                {
+                    ConsoleHelpers.WriteError($"Specified protocol ('{protocolStr}') is invalid.");
+                    return false;
+                }
+            }
+            return true;
         }
 
         private bool VerifyGroup(CommandLineArgs parsedArgs, out MLBulbGroupCode groupCode)
@@ -157,6 +175,33 @@ namespace Anroo.MiLight.Cli
         protected override IEnumerable<HostIdentity> DiscoverHostIdentities(IPAddress localIP)
         {
             return MLBridgeManager.DiscoverAsync(localIP).Result;
+        }
+
+        protected override void StoreSettings(CommandLineArgsBase baseParsedArgs)
+        {
+            CommandLineArgs parsedArgs = (CommandLineArgs) baseParsedArgs;
+            base.StoreSettings(baseParsedArgs);
+            if (!string.IsNullOrEmpty(parsedArgs.ProtocolOptionValue))
+            {
+                if (!StoreProtocol(parsedArgs.ProtocolOptionValue, (Settings) _settings))
+                {
+                    ConsoleHelpers.WriteError("Unable to store specified protocol.");
+                }
+            }
+        }
+
+        private bool StoreProtocol(string protocolStr, Settings settings)
+        {
+            ProtocolType protocol;
+            if (!VerifyProtocol(protocolStr, out protocol))
+            {
+                return false;
+            }
+            settings.Protocol = protocol;
+            settings.Save();
+            Console.WriteLine($"'{protocolStr}' stored as default protocol.");
+            return true;
+
         }
     }
 }

@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Anroo.Common.Udp.Cli;
+using Anroo.Common.Cli;
 
 namespace Anroo.MiLight.Cli
 {
@@ -28,6 +28,7 @@ namespace Anroo.MiLight.Cli
 
         private const string GroupArgumentKey = "<group>";
         private const string CommandParamArgumentKey = "<param>";
+        protected const string ProtocolOptionKey = "--proto";
 
         protected override string UsageText => 
 $@"Control MiLight-compatible bulbs
@@ -35,9 +36,9 @@ $@"Control MiLight-compatible bulbs
 Usage:
   {AppName} -?|--help 
   {AppName} {DiscoverOptionKey}
-  {AppName} [{GroupArgumentKey}] {CommandArgumentKey} [{CommandParamArgumentKey}] [{IPOptionKey}=<bridgeIP>]
-  {AppName} {CommandArgumentKey} [{CommandParamArgumentKey}] [{IPOptionKey}=<bridgeIP>]
-  {AppName} {IPOptionKey}=<bridgeIP>
+  {AppName} [{GroupArgumentKey}] {CommandArgumentKey} [{CommandParamArgumentKey}] [{IPOptionKey}=<bridgeIP>] [{ProtocolOptionKey}=<protocol>]
+  {AppName} {CommandArgumentKey} [{CommandParamArgumentKey}] [{IPOptionKey}=<bridgeIP>] [{ProtocolOptionKey}=<protocol>]
+  {AppName} [{IPOptionKey}=<bridgeIP>] [{ProtocolOptionKey}=<protocol>]
 
   Default {GroupArgumentKey} is 0 (all groups).
   
@@ -70,14 +71,18 @@ Options:
   --discover         Show available bridges.
 
   --ip=<bridgeIP>    IP address of the bridge to use.
-                     Will be stored as default when used without the command.";
+                     Will be stored as default when used without the command.
+
+  --proto=<protocol> Protocol used to send commands to the bridge. Supported values:
+                        UDP (default)
+                        TCP";
 
         public CommandLineArgs(ICollection<string> argv, bool help = true, object version = null, bool optionsFirst = false, bool exit = false)
             : base(argv, help, version, optionsFirst, exit)
         {
         }
-
         public string GroupArgumentValue => _args[GroupArgumentKey]?.ToString();
         public string CommandParamArgumentValue => _args[CommandParamArgumentKey]?.ToString();
+        public string ProtocolOptionValue => _args.ContainsKey(ProtocolOptionKey) ? _args[ProtocolOptionKey]?.ToString() : null;
     }
 }

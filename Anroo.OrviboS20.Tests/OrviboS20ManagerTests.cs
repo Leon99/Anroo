@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Net;
-using Anroo.Common;
+using Anroo.Common.Network;
 using Should;
 using Xunit;
 

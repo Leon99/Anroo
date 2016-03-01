@@ -1,7 +1,8 @@
 using System;
 using System.Net;
+using System.Net.Sockets;
 using System.Threading.Tasks;
-using Anroo.Common.Udp;
+using Anroo.Common.Network;
 
 namespace Anroo.MiLight
 {
@@ -20,7 +21,8 @@ namespace Anroo.MiLight
 
         protected static class GroupCommands
         {
-#region Dual White
+            #region Dual White
+
             internal static readonly MiLightGroupCommands DWOn = new MiLightGroupCommands
             {
                 AllCommand = BulbCommands.DualWhite.AllOn,
@@ -57,6 +59,7 @@ namespace Anroo.MiLight
                 Group4Command = BulbCommands.DualWhite.Group4FullBrightness,
                 Repeatable = true,
             };
+
             #endregion
 
             #region RGBW
@@ -97,18 +100,18 @@ namespace Anroo.MiLight
                 Group4Command = BulbCommands.Rgbw.Group4Night,
             };
 
-#endregion
+            #endregion
         }
 
         internal const int BulbControlPort = 8899;
 
         private readonly MLBulbGroupCode _defaultGroup;
-        private readonly UdpTransmitter _transmitter;
+        private readonly INetTransmitter _transmitter;
 
-        protected MLBulbController(IPAddress bridgeIP, MLBulbGroupCode defaultGroup = MLBulbGroupCode.All)
+        protected MLBulbController(IPAddress bridgeIP, ProtocolType protocol, MLBulbGroupCode defaultGroup = MLBulbGroupCode.All)
         {
             _defaultGroup = defaultGroup;
-            _transmitter = new UdpTransmitter(new IPEndPoint(bridgeIP, BulbControlPort));
+            _transmitter = NetTransmitterFactory.Create(protocol, new IPEndPoint(bridgeIP, BulbControlPort));
         }
 
         public abstract Task OnAsync(MLBulbGroupCode? group = null);

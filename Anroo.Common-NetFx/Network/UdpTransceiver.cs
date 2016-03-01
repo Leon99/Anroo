@@ -3,7 +3,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
 
-namespace Anroo.Common.Udp
+namespace Anroo.Common.Network
 {
     public class UdpTransceiver : UdpTransmitter
     {
@@ -12,16 +12,16 @@ namespace Anroo.Common.Udp
         public UdpTransceiver(IPEndPoint remoteEP, IPAddress localIP = null) : this(remoteEP, localIP != null ? new IPEndPoint(localIP, 0) : null) { }
         public UdpTransceiver(IPEndPoint remoteEP, IPEndPoint localEP = null) : base(remoteEP, localEP)
         {
-            UdpClient.Client.ReceiveTimeout = 1000;
+            NetClient.Client.ReceiveTimeout = 1000;
         }
         public async Task<UdpReceiveResult> ReceiveAsync()
         {
             for (var i = 0; i < 3; i++)
             {
-                if (UdpClient.Available > 0)
+                if (NetClient.Available > 0)
                 {
                     IPEndPoint remoteEP = null;
-                    var buffer = UdpClient.Receive(ref remoteEP);
+                    var buffer = NetClient.Receive(ref remoteEP);
                     return new UdpReceiveResult(buffer, remoteEP);
                 }
                 await DelayAsync(500);
@@ -40,11 +40,11 @@ namespace Anroo.Common.Udp
                 }
                 if (untilCheckFunc(result))
                 {
-                    while (UdpClient.Available > 0)
+                    while (NetClient.Available > 0)
                     {
                         // clear receive buffer
                         IPEndPoint remoteEP = null;
-                        UdpClient.Receive(ref remoteEP);
+                        NetClient.Receive(ref remoteEP);
                     }
                     break;
                 }

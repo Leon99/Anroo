@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Anroo.Common.Udp.Cli;
+using Anroo.Common.Cli;
 
 namespace Anroo.OrviboS20.Cli
 {
