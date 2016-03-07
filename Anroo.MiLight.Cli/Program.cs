@@ -10,7 +10,7 @@ using Anroo.MiLight.Cli.Properties;
 
 namespace Anroo.MiLight.Cli
 {
-    internal class Program: ProgramBase<CommandLineArgs.CommandName>
+    internal class Program : ProgramBase<CommandLineArgs.CommandName>
     {
         public Program(ApplicationSettingsBase settings) : base(settings)
         {
@@ -46,38 +46,38 @@ namespace Anroo.MiLight.Cli
                 case CommandLineArgs.CommandName.BrightnessDown:
                 case CommandLineArgs.CommandName.Warmer:
                 case CommandLineArgs.CommandName.Cooler:
-                {
-                    using (var bulbGroup = new MLDWBulbController(thingIP, protocol, groupCode))
                     {
-                        switch (commandName)
+                        using (var bulbGroup = new MLDWBulbController(thingIP, protocol, groupCode))
                         {
-                            case CommandLineArgs.CommandName.DWOn:
-                                bulbGroup.OnAsync().Wait();
-                                break;
-                            case CommandLineArgs.CommandName.DWOff:
-                                bulbGroup.OffAsync().Wait();
-                                break;
-                            case CommandLineArgs.CommandName.DWNight:
-                                bulbGroup.NightModeAsync().Wait();
-                                break;
-                            case CommandLineArgs.CommandName.BrightnessFull:
-                                bulbGroup.FullBrightnessAsync().Wait();
-                                break;
-                            case CommandLineArgs.CommandName.BrightnessUp:
-                                bulbGroup.BrightnessUpAsync().Wait();
-                                break;
-                            case CommandLineArgs.CommandName.BrightnessDown:
-                                bulbGroup.BrightnessDownAsync().Wait();
-                                break;
-                            case CommandLineArgs.CommandName.Warmer:
-                                bulbGroup.ColorTemperatureDownAsync().Wait();
-                                break;
-                            case CommandLineArgs.CommandName.Cooler:
-                                bulbGroup.ColorTemperatureUpAsync().Wait();
-                                break;
+                            switch (commandName)
+                            {
+                                case CommandLineArgs.CommandName.DWOn:
+                                    bulbGroup.OnAsync().Wait();
+                                    break;
+                                case CommandLineArgs.CommandName.DWOff:
+                                    bulbGroup.OffAsync().Wait();
+                                    break;
+                                case CommandLineArgs.CommandName.DWNight:
+                                    bulbGroup.NightModeAsync().Wait();
+                                    break;
+                                case CommandLineArgs.CommandName.BrightnessFull:
+                                    bulbGroup.FullBrightnessAsync().Wait();
+                                    break;
+                                case CommandLineArgs.CommandName.BrightnessUp:
+                                    bulbGroup.BrightnessUpAsync().Wait();
+                                    break;
+                                case CommandLineArgs.CommandName.BrightnessDown:
+                                    bulbGroup.BrightnessDownAsync().Wait();
+                                    break;
+                                case CommandLineArgs.CommandName.Warmer:
+                                    bulbGroup.ColorTemperatureDownAsync().Wait();
+                                    break;
+                                case CommandLineArgs.CommandName.Cooler:
+                                    bulbGroup.ColorTemperatureUpAsync().Wait();
+                                    break;
+                            }
                         }
                     }
-                }
                     break;
                 case CommandLineArgs.CommandName.RGBWOn:
                 case CommandLineArgs.CommandName.RGBWOff:
@@ -88,54 +88,54 @@ namespace Anroo.MiLight.Cli
                 case CommandLineArgs.CommandName.Disco:
                 case CommandLineArgs.CommandName.DiscoFaster:
                 case CommandLineArgs.CommandName.DiscoSlower:
-                {
-                    using (var bulbGroup = new MLRgbwBulbController(thingIP, protocol, groupCode))
                     {
-                        switch (commandName)
+                        using (var bulbGroup = new MLRgbwBulbController(thingIP, protocol, groupCode))
                         {
-                            case CommandLineArgs.CommandName.RGBWOn:
-                                bulbGroup.OnAsync().Wait();
-                                break;
-                            case CommandLineArgs.CommandName.RGBWOff:
-                                bulbGroup.OffAsync().Wait();
-                                break;
-                            case CommandLineArgs.CommandName.RGBWNight:
-                                bulbGroup.NightModeAsync().Wait();
-                                break;
-                            case CommandLineArgs.CommandName.Brightness:
-                                byte brightness;
-                                if (!byte.TryParse(parsedArgs.CommandParamArgumentValue, out brightness)
-                                    || !brightness.Between(MLDWBulbController.MinBrightness, MLDWBulbController.MaxBrightness))
-                                {
-                                    ConsoleHelpers.WriteError("Specified brightness value is invalid.");
-                                    return;
-                                }
-                                bulbGroup.BrightnessAsync(brightness).Wait();
-                                break;
-                            case CommandLineArgs.CommandName.White:
-                                bulbGroup.WhiteModeAsync().Wait();
-                                break;
-                            case CommandLineArgs.CommandName.Color:
-                                byte color;
-                                if (!byte.TryParse(parsedArgs.CommandParamArgumentValue, out color))
-                                {
-                                    ConsoleHelpers.WriteError("Specified color is invalid.");
-                                    return;
-                                }
-                                bulbGroup.ColorAsync(color).Wait();
-                                break;
-                            case CommandLineArgs.CommandName.Disco:
-                                bulbGroup.DiscoModeAsync().Wait();
-                                break;
-                            case CommandLineArgs.CommandName.DiscoFaster:
-                                bulbGroup.DiscoSpeedFasterAsync().Wait();
-                                break;
-                            case CommandLineArgs.CommandName.DiscoSlower:
-                                bulbGroup.DiscoSpeedSlowerAsync().Wait();
-                                break;
+                            switch (commandName)
+                            {
+                                case CommandLineArgs.CommandName.RGBWOn:
+                                    bulbGroup.OnAsync().Wait();
+                                    break;
+                                case CommandLineArgs.CommandName.RGBWOff:
+                                    bulbGroup.OffAsync().Wait();
+                                    break;
+                                case CommandLineArgs.CommandName.RGBWNight:
+                                    bulbGroup.NightModeAsync().Wait();
+                                    break;
+                                case CommandLineArgs.CommandName.Brightness:
+                                    byte brightness;
+                                    if (!byte.TryParse(parsedArgs.CommandParamArgumentValue, out brightness)
+                                        || !brightness.Between(MLDWBulbController.MinBrightness, MLDWBulbController.MaxBrightness))
+                                    {
+                                        ConsoleHelpers.WriteError("Specified brightness value is invalid.");
+                                        return;
+                                    }
+                                    bulbGroup.BrightnessAsync(brightness).Wait();
+                                    break;
+                                case CommandLineArgs.CommandName.White:
+                                    bulbGroup.WhiteModeAsync().Wait();
+                                    break;
+                                case CommandLineArgs.CommandName.Color:
+                                    byte color;
+                                    if (!byte.TryParse(parsedArgs.CommandParamArgumentValue, out color))
+                                    {
+                                        ConsoleHelpers.WriteError("Specified color is invalid.");
+                                        return;
+                                    }
+                                    bulbGroup.ColorAsync(color).Wait();
+                                    break;
+                                case CommandLineArgs.CommandName.Disco:
+                                    bulbGroup.DiscoModeAsync().Wait();
+                                    break;
+                                case CommandLineArgs.CommandName.DiscoFaster:
+                                    bulbGroup.DiscoSpeedFasterAsync().Wait();
+                                    break;
+                                case CommandLineArgs.CommandName.DiscoSlower:
+                                    bulbGroup.DiscoSpeedSlowerAsync().Wait();
+                                    break;
+                            }
                         }
                     }
-                }
                     break;
             }
             Console.WriteLine($"'{baseParsedArgs.CommandArgumentValue}' command has been sent using {protocol.ToString().ToUpperInvariant()} to group '{groupCode}' via {thingIP}.");
@@ -143,8 +143,11 @@ namespace Anroo.MiLight.Cli
 
         private bool VerifyProtocol(string protocolStr, out ProtocolType protocol)
         {
-            protocol = ProtocolType.Udp;
-            if (protocolStr != null)
+            if (protocolStr == null)
+            {
+                protocol = (ProtocolType) _settings["Protocol"];
+            }
+            else
             {
                 if (!Enum.TryParse(protocolStr, true, out protocol))
                 {
@@ -179,11 +182,11 @@ namespace Anroo.MiLight.Cli
 
         protected override void StoreSettings(CommandLineArgsBase baseParsedArgs)
         {
-            CommandLineArgs parsedArgs = (CommandLineArgs) baseParsedArgs;
+            CommandLineArgs parsedArgs = (CommandLineArgs)baseParsedArgs;
             base.StoreSettings(baseParsedArgs);
             if (!string.IsNullOrEmpty(parsedArgs.ProtocolOptionValue))
             {
-                if (!StoreProtocol(parsedArgs.ProtocolOptionValue, (Settings) _settings))
+                if (!StoreProtocol(parsedArgs.ProtocolOptionValue, (Settings)_settings))
                 {
                     ConsoleHelpers.WriteError("Unable to store specified protocol.");
                 }

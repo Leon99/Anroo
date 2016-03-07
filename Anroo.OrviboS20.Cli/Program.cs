@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
@@ -31,7 +32,8 @@ namespace Anroo.OrviboS20.Cli
 
             using (var controller = new OrviboS20Controller(thingIP, thingMac.GetAddressBytes()))
             {
-                OrviboS20PowerStateResponse result;
+                Console.Write($"Sending '{commandName}' command to {thingIP}...");
+                OrviboS20PowerStateResponse result = null;
                 switch (commandName)
                 {
                     case CommandLineArgs.CommandName.On:
@@ -41,6 +43,7 @@ namespace Anroo.OrviboS20.Cli
                         result = controller.PowerOffAsync().Result;
                         break;
                 }
+                Console.WriteLine($"Result: {(result != null ? (result.IsPowerOn ? "Power On" : "Power Off") : "Unknown")}");
             }
         }
 

@@ -5,7 +5,7 @@
     <Setting Name="ThingMac" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="ThingIp" Type="System.String" Scope="User">
+    <Setting Name="ThingIP" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

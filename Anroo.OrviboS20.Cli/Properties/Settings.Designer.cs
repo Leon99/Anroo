@@ -38,12 +38,12 @@ namespace Anroo.OrviboS20.Cli.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string ThingIp {
+        public string ThingIP {
             get {
-                return ((string)(this["ThingIp"]));
+                return ((string)(this["ThingIP"]));
             }
             set {
-                this["ThingIp"] = value;
+                this["ThingIP"] = value;
             }
         }
     }
