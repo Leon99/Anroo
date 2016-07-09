@@ -25,6 +25,10 @@ namespace Anroo.Common.Cli
 
         protected void ExecuteProgram(Func<CommandLineArgsBase> argsParserFactory)
         {
+            if (Environment.HasShutdownStarted)
+            {
+                return;
+            }
             try
             {
                 _settings.Upgrade();
