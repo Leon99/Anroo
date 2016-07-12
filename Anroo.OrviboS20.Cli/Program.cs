@@ -11,14 +11,14 @@ namespace Anroo.OrviboS20.Cli
 {
     class Program : ProgramBase<CommandLineArgs.CommandName>
     {
-        private Program(Settings settings) : base(settings)
-        {
-        }
-
         static void Main(string[] args)
         {
-            var app = new Program(Settings.Default);
+            var app = new Program(Properties.Settings.Default);
             app.ExecuteProgram(() => new CommandLineArgs(args));
+        }
+
+        private Program(Settings settings) : base(settings)
+        {
         }
 
         protected override void RunCommand(CommandLineArgsBase baseParsedArgs)

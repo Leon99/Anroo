@@ -11,7 +11,7 @@ namespace Anroo.OrviboS20.Cli
             Off,
         }
 
-        protected override string UsageText =>
+        public override string UsageText =>
 $@"Control Orvibo S20 power socket.
 
 Usage:

@@ -11,13 +11,13 @@ namespace Anroo.Common.Cli
 {
     public abstract class ProgramBase<TCommand> where TCommand : struct
     {
-        protected readonly ApplicationSettingsBase _settings;
+        protected readonly ApplicationSettingsBase Settings;
 
         protected ProgramBase(ApplicationSettingsBase settings)
         {
             AppDomain.CurrentDomain.UnhandledException += CommonHelpers.CurrentDomain_UnhandledException;
 
-            _settings = settings;
+            Settings = settings;
         }
 
         protected abstract void RunCommand(CommandLineArgsBase parsedArgs);
@@ -31,7 +31,8 @@ namespace Anroo.Common.Cli
             }
             try
             {
-                _settings.Upgrade();
+
+                Settings.Upgrade();
                 CommandLineArgsBase parsedArgs;
                 try
                 {
@@ -41,6 +42,10 @@ namespace Anroo.Common.Cli
                 {
                     Console.WriteLine(ex.Message);
                     return;
+                }
+                if (Environment.GetCommandLineArgs().Length == 1)
+                {
+                    Console.WriteLine(parsedArgs.UsageText);
                 }
 
                 if (parsedArgs.DiscoverOptionSpecified)
@@ -53,7 +58,7 @@ namespace Anroo.Common.Cli
                 }
                 else
                 {
-                    StoreSettings(parsedArgs);
+                    HandleSettingsOptions(parsedArgs);
                 }
             }
             finally
@@ -62,18 +67,18 @@ namespace Anroo.Common.Cli
             }
         }
 
-        protected virtual void StoreSettings(CommandLineArgsBase baseParsedArgs)
+        protected virtual void HandleSettingsOptions(CommandLineArgsBase baseParsedArgs)
         {
             if (!string.IsNullOrEmpty(baseParsedArgs.IPOptionValue))
             {
-                if (!StoreIP(baseParsedArgs.IPOptionValue, _settings))
+                if (!StoreIP(baseParsedArgs.IPOptionValue, Settings))
                 {
                     ConsoleHelpers.WriteError("Unable to store specified IP address.");
                 }
             }
             if (!string.IsNullOrEmpty(baseParsedArgs.MacOptionValue))
             {
-                if (!StoreMac(baseParsedArgs.MacOptionValue, _settings))
+                if (!StoreMac(baseParsedArgs.MacOptionValue, Settings))
                 {
                     ConsoleHelpers.WriteError("Unable to store specified MAC address.");
                 }
@@ -168,7 +173,7 @@ namespace Anroo.Common.Cli
             // Verify bridge IP
             var thingIPStr = !string.IsNullOrEmpty(parsedArgs.IPOptionValue)
                 ? parsedArgs.IPOptionValue
-                : _settings["ThingIP"] as string;
+                : Settings["ThingIP"] as string;
             if (string.IsNullOrEmpty(thingIPStr))
             {
                 ConsoleHelpers.WriteError("Please specify IP address of the thing.");
@@ -187,7 +192,7 @@ namespace Anroo.Common.Cli
             // Verify MAC
             var thingMacStr = !string.IsNullOrEmpty(parsedArgs.MacOptionValue)
                 ? parsedArgs.MacOptionValue
-                : _settings["ThingMac"] as string;
+                : Settings["ThingMac"] as string;
             if (string.IsNullOrEmpty(thingMacStr))
             {
                 ConsoleHelpers.WriteError("Please specify MAC address of the thing.");

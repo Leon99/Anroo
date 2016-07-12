@@ -30,7 +30,7 @@ namespace Anroo.MiLight.Cli
         private const string CommandParamArgumentKey = "<param>";
         protected const string ProtocolOptionKey = "--proto";
 
-        protected override string UsageText => 
+        public override string UsageText => 
 $@"Control MiLight-compatible bulbs
 
 Usage:
@@ -81,8 +81,8 @@ Options:
             : base(argv, help, version, optionsFirst, exit)
         {
         }
-        public string GroupArgumentValue => _args[GroupArgumentKey]?.ToString();
-        public string CommandParamArgumentValue => _args[CommandParamArgumentKey]?.ToString();
-        public string ProtocolOptionValue => _args.ContainsKey(ProtocolOptionKey) ? _args[ProtocolOptionKey]?.ToString() : null;
+        public string GroupArgumentValue => Args[GroupArgumentKey]?.ToString();
+        public string CommandParamArgumentValue => Args[CommandParamArgumentKey]?.ToString();
+        public string ProtocolOptionValue => Args.ContainsKey(ProtocolOptionKey) ? Args[ProtocolOptionKey]?.ToString() : null;
     }
 }

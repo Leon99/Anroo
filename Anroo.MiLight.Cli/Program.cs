@@ -18,7 +18,7 @@ namespace Anroo.MiLight.Cli
 
         private static void Main(string[] args)
         {
-            var app = new Program(Settings.Default);
+            var app = new Program(Properties.Settings.Default);
             app.ExecuteProgram(() => new CommandLineArgs(args));
         }
 
@@ -145,7 +145,7 @@ namespace Anroo.MiLight.Cli
         {
             if (protocolStr == null)
             {
-                protocol = (ProtocolType) _settings["Protocol"];
+                protocol = (ProtocolType) Settings["Protocol"];
             }
             else
             {
@@ -171,7 +171,7 @@ namespace Anroo.MiLight.Cli
                     return false;
                 }
             }
-            groupCode = (MLBulbGroupCode)@group;
+            groupCode = (MLBulbGroupCode)group;
             return true;
         }
 
@@ -180,13 +180,13 @@ namespace Anroo.MiLight.Cli
             return MLBridgeManager.DiscoverAsync(localIP).Result;
         }
 
-        protected override void StoreSettings(CommandLineArgsBase baseParsedArgs)
+        protected override void HandleSettingsOptions(CommandLineArgsBase baseParsedArgs)
         {
             CommandLineArgs parsedArgs = (CommandLineArgs)baseParsedArgs;
-            base.StoreSettings(baseParsedArgs);
+            base.HandleSettingsOptions(baseParsedArgs);
             if (!string.IsNullOrEmpty(parsedArgs.ProtocolOptionValue))
             {
-                if (!StoreProtocol(parsedArgs.ProtocolOptionValue, (Settings)_settings))
+                if (!StoreProtocol(parsedArgs.ProtocolOptionValue, (Settings)Settings))
                 {
                     ConsoleHelpers.WriteError("Unable to store specified protocol.");
                 }
