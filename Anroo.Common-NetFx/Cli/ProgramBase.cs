@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
+using System.Threading.Tasks;
 using Anroo.Common.Network;
 using DocoptNet;
 
@@ -21,7 +22,7 @@ namespace Anroo.Common.Cli
         }
 
         protected abstract void RunCommand(CommandLineArgsBase parsedArgs);
-        protected abstract IEnumerable<HostIdentity> DiscoverHostIdentities(IPAddress localIP);
+        protected abstract Task<IEnumerable<HostIdentity>> DiscoverHostIdentitiesAsync(IPAddress localIP);
 
         protected void ExecuteProgram(Func<CommandLineArgsBase> argsParserFactory)
         {
@@ -50,7 +51,7 @@ namespace Anroo.Common.Cli
 
                 if (parsedArgs.DiscoverOptionSpecified)
                 {
-                    RunDiscover();
+                    RunDiscovery().Wait();
                 }
                 else if (!string.IsNullOrEmpty(parsedArgs.CommandArgumentValue))
                 {
@@ -130,30 +131,34 @@ namespace Anroo.Common.Cli
             return true;
         }
 
-        private void RunDiscover()
+        private async Task RunDiscovery()
         {
             var localEPs = NetworkTools.GetEligibleLocalEndpoints();
+            Console.WriteLine("Compatible interface(s) detected:");
             foreach (var localEP in localEPs)
             {
-                Console.WriteLine();
-                Console.Write($"Looking for things on '{localEP.NetworkInterfaceName}'... ");
-                var things = DiscoverHostIdentities(localEP.UnicastAddress);
-                if (things.Any())
-                {
-                    Console.WriteLine($"Found {things.Count()} thing(s):");
-                    Console.WriteLine();
-                    foreach (var thing in things)
-                    {
-                        Console.WriteLine($"\tIP: {thing.IPAddress}\tMAC: {thing.MacAddress.ToMacAddressString()}");
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Not found.");
-                }
+                Console.WriteLine($"- {localEP.NetworkInterfaceName}");
             }
             Console.WriteLine();
-            Console.WriteLine("Discover finished.");
+            Console.WriteLine("Looking for things...");
+            Console.WriteLine();
+            var tasks = localEPs.Select(localEP => DiscoverHostIdentitiesAsync(localEP.UnicastAddress)).ToArray();
+            await Task.WhenAll(tasks);
+            int discoveredThingsCnt = 0;
+            foreach (var task in tasks)
+            {
+                var hosts = task.Result;
+                foreach (var host in hosts)
+                {
+                    Console.WriteLine($"IP address: {host.IPAddress}\tMAC address: {host.MacAddress.ToMacAddressString()}");
+                    discoveredThingsCnt++;
+                }
+            }
+            if (discoveredThingsCnt == 0)
+            {
+                Console.WriteLine("No things found on any of the compatible interfaces.");
+            }
+            Console.WriteLine();
         }
 
         protected bool VerifyCommand(CommandLineArgsBase parsedArgs, out TCommand commandName)

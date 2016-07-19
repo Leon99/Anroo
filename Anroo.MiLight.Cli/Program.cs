@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading.Tasks;
 using Anroo.Common;
 using Anroo.Common.Cli;
 using Anroo.Common.Network;
@@ -175,9 +176,9 @@ namespace Anroo.MiLight.Cli
             return true;
         }
 
-        protected override IEnumerable<HostIdentity> DiscoverHostIdentities(IPAddress localIP)
+        protected override Task<IEnumerable<HostIdentity>> DiscoverHostIdentitiesAsync(IPAddress localIP)
         {
-            return MLBridgeManager.DiscoverAsync(localIP).Result;
+            return MLBridgeManager.DiscoverAsync(localIP);
         }
 
         protected override void HandleSettingsOptions(CommandLineArgsBase baseParsedArgs)

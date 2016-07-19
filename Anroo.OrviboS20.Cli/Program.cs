@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
+using System.Threading.Tasks;
 using Anroo.Common.Cli;
 using Anroo.Common.Network;
 using Anroo.OrviboS20.Cli.Properties;
@@ -47,9 +48,10 @@ namespace Anroo.OrviboS20.Cli
             }
         }
 
-        protected override IEnumerable<HostIdentity> DiscoverHostIdentities(IPAddress localIP)
+        protected override async Task<IEnumerable<HostIdentity>> DiscoverHostIdentitiesAsync(IPAddress localIP)
         {
-            return OrviboS20Manager.DiscoverUnknownAsync(localIP).Result.Select(response => response.NetworkAddress);
+            var result = await OrviboS20Manager.DiscoverUnknownAsync(localIP);
+            return result.Select(response => response.NetworkAddress);
         }
     }
 }
