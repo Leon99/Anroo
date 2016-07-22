@@ -5,7 +5,8 @@ using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Threading.Tasks;
-using Anroo.Common.Network;
+ using Anroo.Common.Extensions;
+ using Anroo.Common.Network;
 using DocoptNet;
 
 namespace Anroo.Common.Cli

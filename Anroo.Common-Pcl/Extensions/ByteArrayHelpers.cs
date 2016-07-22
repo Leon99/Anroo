@@ -2,7 +2,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 
-namespace Anroo.Common
+namespace Anroo.Common.Extensions
 {
     public static class ByteArrayHelpers
     {

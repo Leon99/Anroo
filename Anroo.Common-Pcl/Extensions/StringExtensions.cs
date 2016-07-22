@@ -1,6 +1,6 @@
 using System;
 
-namespace Anroo.Common
+namespace Anroo.Common.Extensions
 {
     public static class StringExtensions
     {

@@ -1,7 +1,7 @@
 using System.IO;
 using System.Threading.Tasks;
 
-namespace Anroo.Common
+namespace Anroo.Common.Extensions
 {
     public static class StreamExtensions
     {

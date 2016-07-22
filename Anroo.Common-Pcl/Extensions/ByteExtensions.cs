@@ -1,4 +1,4 @@
-namespace Anroo.Common
+namespace Anroo.Common.Extensions
 {
     public static class ByteExtensions
     {
