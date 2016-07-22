@@ -27,21 +27,10 @@ namespace Anroo.Common.Network
             {
                 if (!NetClient.Connected)
                 {
-                    NetClient.Connect(RemoteEP);
+                    NetClient.Client.Connect(RemoteEP);
                     _stream = NetClient.GetStream();
                 }
             }
-        }
-
-        public void Close()
-        {
-            _stream.Close();
-            NetClient?.Close();
-        }
-
-        public override void Dispose()
-        {
-            Close();
         }
     }
 }

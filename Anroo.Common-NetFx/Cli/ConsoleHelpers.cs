@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics;
 
-namespace Anroo.Common
+namespace Anroo.Common.Cli
 {
     public static class ConsoleHelpers
     {

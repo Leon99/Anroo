@@ -20,9 +20,8 @@ namespace Anroo.Common.Network
             {
                 if (NetClient.Available > 0)
                 {
-                    IPEndPoint remoteEP = null;
-                    var buffer = NetClient.Receive(ref remoteEP);
-                    return new UdpReceiveResult(buffer, remoteEP);
+                    var receiveResult = await NetClient.ReceiveAsync();
+                    return new UdpReceiveResult(receiveResult.Buffer, receiveResult.RemoteEndPoint);
                 }
                 await DelayAsync(500);
             }
@@ -42,9 +41,7 @@ namespace Anroo.Common.Network
                 {
                     while (NetClient.Available > 0)
                     {
-                        // clear receive buffer
-                        IPEndPoint remoteEP = null;
-                        NetClient.Receive(ref remoteEP);
+                        await NetClient.ReceiveAsync();
                     }
                     break;
                 }

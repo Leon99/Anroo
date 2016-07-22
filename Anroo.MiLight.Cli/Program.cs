@@ -187,15 +187,16 @@ namespace Anroo.MiLight.Cli
             base.HandleSettingsOptions(baseParsedArgs);
             if (!string.IsNullOrEmpty(parsedArgs.ProtocolOptionValue))
             {
-                if (!StoreProtocol(parsedArgs.ProtocolOptionValue, (Settings)Settings))
+                if (!StoreProtocol(parsedArgs.ProtocolOptionValue))
                 {
                     ConsoleHelpers.WriteError("Unable to store specified protocol.");
                 }
             }
         }
 
-        private bool StoreProtocol(string protocolStr, Settings settings)
+        private bool StoreProtocol(string protocolStr)
         {
+            Settings settings = (Settings)Settings;
             ProtocolType protocol;
             if (!VerifyProtocol(protocolStr, out protocol))
             {
@@ -205,7 +206,6 @@ namespace Anroo.MiLight.Cli
             settings.Save();
             Console.WriteLine($"'{protocolStr}' stored as default protocol.");
             return true;
-
         }
     }
 }

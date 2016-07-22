@@ -1,8 +1,8 @@
 using System;
 
-namespace Anroo.Common
+namespace Anroo.Common.Cli
 {
-    public class ConsoleColorCookie : IDisposable
+    public sealed class ConsoleColorCookie : IDisposable
     {
         private readonly ConsoleColor _prevColor;
 

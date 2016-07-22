@@ -15,7 +15,9 @@ namespace Anroo.Common.Network
             switch (typeof (T).Name)
             {
                 case nameof(TcpClient):
-                    return new TcpClient(localEP) as T;
+                    var client = new TcpClient();
+                    client.Client.Bind(localEP);
+                    return client as T;
                 case nameof(UdpClient):
                     return new UdpClient(localEP) as T;
             }

@@ -8,5 +8,8 @@
     <Setting Name="Protocol" Type="System.Net.Sockets.ProtocolType" Scope="User">
       <Value Profile="(Default)">Udp</Value>
     </Setting>
+    <Setting Name="IsUpgradeRequired" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

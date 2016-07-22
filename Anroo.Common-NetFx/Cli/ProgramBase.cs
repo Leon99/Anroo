@@ -1,4 +1,4 @@
-using System;
+ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -16,8 +16,6 @@ namespace Anroo.Common.Cli
 
         protected ProgramBase(ApplicationSettingsBase settings)
         {
-            AppDomain.CurrentDomain.UnhandledException += CommonHelpers.CurrentDomain_UnhandledException;
-
             Settings = settings;
         }
 
@@ -32,8 +30,21 @@ namespace Anroo.Common.Cli
             }
             try
             {
-
-                Settings.Upgrade();
+                bool isUpgradeRequired;
+                try
+                {
+                    isUpgradeRequired = (bool) Settings["IsUpgradeRequired"];
+                }
+                catch (SettingsPropertyNotFoundException)
+                {
+                    isUpgradeRequired = true;
+                }
+                if (isUpgradeRequired)
+                {
+                    Settings.Upgrade();
+                    Settings["IsUpgradeRequired"] = false;
+                    Settings.Save();
+                }
                 CommandLineArgsBase parsedArgs;
                 try
                 {
@@ -51,7 +62,7 @@ namespace Anroo.Common.Cli
 
                 if (parsedArgs.DiscoverOptionSpecified)
                 {
-                    RunDiscovery().Wait();
+                    RunDiscoveryAsync().Wait();
                 }
                 else if (!string.IsNullOrEmpty(parsedArgs.CommandArgumentValue))
                 {
@@ -131,7 +142,7 @@ namespace Anroo.Common.Cli
             return true;
         }
 
-        private async Task RunDiscovery()
+        private async Task RunDiscoveryAsync()
         {
             var localEPs = NetworkTools.GetEligibleLocalEndpoints();
             Console.WriteLine("Compatible interface(s) detected:");

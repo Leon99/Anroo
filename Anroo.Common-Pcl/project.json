@@ -1,9 +1,11 @@
 ﻿{
   "supports": {},
   "dependencies": {
-    "shim": "1.0.2.50909"
+    "Microsoft.NETCore.Portable.Compatibility": "1.0.1",
+    "NETStandard.Library": "1.6.0",
+    "System.Net.NetworkInformation": "4.1.0"
   },
   "frameworks": {
-    ".NETPortable,Version=v4.6,Profile=Profile44": {}
+    "netstandard1.4": {}
   }
 }

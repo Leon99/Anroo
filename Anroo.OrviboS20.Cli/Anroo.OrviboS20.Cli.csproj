@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Anroo.OrviboS20.Cli</RootNamespace>
     <AssemblyName>OrviboS20</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -36,7 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DocoptNet, Version=0.6.1.4, Culture=neutral, PublicKeyToken=7a38c71da49a547e, processorArchitecture=MSIL">
-      <HintPath>..\packages\docopt.net.0.6.1.6\lib\net40\DocoptNet.dll</HintPath>
+      <HintPath>..\packages\docopt.net.0.6.1.8\lib\net40\DocoptNet.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -73,6 +74,10 @@
     <ProjectReference Include="..\Anroo.Common-NetFx\Anroo.Common-NetFX.csproj">
       <Project>{6C04C115-A9F1-4224-9F7C-10FE202A108F}</Project>
       <Name>Anroo.Common-NetFX</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Anroo.Common-Pcl\Anroo.Common-Pcl.csproj">
+      <Project>{ABF52AAF-791F-47E6-BE76-EBC4C869CAA2}</Project>
+      <Name>Anroo.Common-Pcl</Name>
     </ProjectReference>
     <ProjectReference Include="..\Anroo.OrviboS20\Anroo.OrviboS20.csproj">
       <Project>{775E17B0-FFEA-45DA-AAF3-69716F331A11}</Project>

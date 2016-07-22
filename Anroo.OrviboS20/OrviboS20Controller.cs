@@ -6,7 +6,7 @@ using Anroo.Common.Network;
 
 namespace Anroo.OrviboS20
 {
-    public class OrviboS20Controller : IDisposable
+    public sealed class OrviboS20Controller : IDisposable
     {
         private readonly byte[] _thingMac;
         private const int CommandDelay = 500;

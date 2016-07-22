@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using DocoptNet;
 
 namespace Anroo.Common.Cli
 {
     public class CommandLineArgsBase
     {
-        protected static readonly string AppName = Path.GetFileNameWithoutExtension(AppDomain.CurrentDomain.FriendlyName);
+        protected static readonly string AppName = Path.GetFileNameWithoutExtension(Assembly.GetEntryAssembly().GetName().Name);
 
         protected const string DiscoverOptionKey = "--discover";
         protected const string IPOptionKey = "--ip";

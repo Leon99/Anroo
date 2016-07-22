@@ -1,9 +1,10 @@
+using System;
 using System.Net;
 using System.Threading.Tasks;
 
 namespace Anroo.Common.Network
 {
-    public abstract class NetTransmitter<T> : INetTransmitter where T: class, new()
+    public abstract class NetTransmitter<T> : INetTransmitter where T : class, IDisposable, new()
     {
         protected T NetClient;
         protected IPEndPoint RemoteEP;
@@ -27,6 +28,9 @@ namespace Anroo.Common.Network
 
         public abstract Task SendDataAsync(byte[] data);
 
-        public abstract void Dispose();
+        public virtual void Dispose()
+        {
+            NetClient.Dispose();
+        }
     }
 }

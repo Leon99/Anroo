@@ -24,7 +24,7 @@ namespace Anroo.Common.Network
                 }
                 else
                 {
-                    NetClient.Connect(remoteEP);
+                    NetClient.Client.Connect(remoteEP);
                 }
             }
         }
@@ -40,19 +40,9 @@ namespace Anroo.Common.Network
             await DelayAsync(DelayAfterSend);
         }
 
-        public void Close()
-        {
-            NetClient?.Close();
-        }
-
         protected async Task DelayAsync(int duration)
         {
             await Task.Delay(duration);
-        }
-
-        public override void Dispose()
-        {
-            Close();
         }
     }
 }
