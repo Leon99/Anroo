@@ -76,7 +76,6 @@
   <ItemGroup>
     <Compile Include="OrviboS20ControllerTests.cs" />
     <Compile Include="OrviboS20ManagerTests.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -90,10 +89,13 @@
       <Project>{ABF52AAF-791F-47E6-BE76-EBC4C869CAA2}</Project>
       <Name>Anroo.Common-Pcl</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Anroo.OrviboS20\Anroo.OrviboS20.csproj">
-      <Project>{775E17B0-FFEA-45DA-AAF3-69716F331A11}</Project>
-      <Name>Anroo.OrviboS20</Name>
+    <ProjectReference Include="..\Anroo.OrviboS20-Pcl\Anroo.OrviboS20-Pcl.csproj">
+      <Project>{7B850516-B74D-477F-A844-3D303C0E6658}</Project>
+      <Name>Anroo.OrviboS20-Pcl</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

@@ -4,7 +4,6 @@ using System.Configuration;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
-using Anroo.Common;
 using Anroo.Common.Cli;
 using Anroo.Common.Extensions;
 using Anroo.Common.Network;

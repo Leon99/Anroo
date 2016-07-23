@@ -2,16 +2,20 @@
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{775E17B0-FFEA-45DA-AAF3-69716F331A11}</ProjectGuid>
+    <ProjectGuid>{C756F342-0361-4F51-A20E-F2E75FF809E5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Anroo.OrviboS20</RootNamespace>
-    <AssemblyName>Anroo.OrviboS20</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <RootNamespace>Anroo.MiLight</RootNamespace>
+    <AssemblyName>Anroo.MiLight</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,43 +35,28 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Net.Sockets, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Net.Sockets.4.1.0\lib\net46\System.Net.Sockets.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
+    <None Include="project.json" />
+    <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\AssemblyInfo.Anroo.cs">
       <Link>Properties\AssemblyInfo.Anroo.cs</Link>
     </Compile>
-    <Compile Include="CommandResponses\OrviboS20CommandResponseFactory.cs" />
-    <Compile Include="CommandResponses\OrviboS20DiscoverCommandResponse.cs" />
-    <Compile Include="CommandResponses\OrviboS20CommandResponse.cs" />
-    <Compile Include="OrviboS20Controller.cs" />
-    <Compile Include="OrviboS20Manager.cs" />
-    <Compile Include="MessageFactory.cs" />
-    <Compile Include="MessageTokens.cs" />
-    <Compile Include="CommandResponses\OrviboS20PowerStateResponse.cs" />
-    <Compile Include="OrviboS20Ports.cs" />
-    <Compile Include="CommandResponses\OrviboS20SubscribeResponse.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BulbCommands.cs" />
+    <Compile Include="DiscoverCommandResponse.cs" />
+    <Compile Include="MLBridgeManager.cs" />
+    <Compile Include="MLBulbController.cs" />
+    <Compile Include="MLBulbGroupCode.cs" />
+    <Compile Include="MLDWBulbController.cs" />
+    <Compile Include="MLRgbwBulbController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Anroo.Common-NetFx\Anroo.Common-NetFX.csproj">
-      <Project>{6C04C115-A9F1-4224-9F7C-10FE202A108F}</Project>
-      <Name>Anroo.Common-NetFX</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Anroo.Common-Pcl\Anroo.Common-Pcl.csproj">
       <Project>{ABF52AAF-791F-47E6-BE76-EBC4C869CAA2}</Project>
       <Name>Anroo.Common-Pcl</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

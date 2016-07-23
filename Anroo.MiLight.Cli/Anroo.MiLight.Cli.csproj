@@ -104,9 +104,9 @@
       <Project>{ABF52AAF-791F-47E6-BE76-EBC4C869CAA2}</Project>
       <Name>Anroo.Common-Pcl</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Anroo.MiLight\Anroo.MiLight.csproj">
-      <Project>{ACBE4AFC-BAD2-45E9-A72A-4680BD19D868}</Project>
-      <Name>Anroo.MiLight</Name>
+    <ProjectReference Include="..\Anroo.MiLight-Pcl\Anroo.MiLight-Pcl.csproj">
+      <Project>{C756F342-0361-4F51-A20E-F2E75FF809E5}</Project>
+      <Name>Anroo.MiLight-Pcl</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

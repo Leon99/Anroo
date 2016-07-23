@@ -39,12 +39,6 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Anroo.MiLight.Cli\Anroo.MiLight.Cli.csproj">
-      <Project>{D4CDCEB4-CD4F-46E4-AA80-138D71807A76}</Project>
-      <Name>Anroo.MiLight.Cli</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>choco pack $(TargetDir)milightcli.nuspec</PostBuildEvent>
