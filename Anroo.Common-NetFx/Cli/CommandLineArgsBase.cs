@@ -9,6 +9,7 @@ namespace Anroo.Common.Cli
     {
         protected static readonly string AppName = Path.GetFileNameWithoutExtension(Assembly.GetEntryAssembly().GetName().Name);
 
+        private const string HelpOptionKey = "--help";
         protected const string DiscoverOptionKey = "--discover";
         protected const string IPOptionKey = "--ip";
         protected const string MacOptionKey = "--mac";
@@ -17,7 +18,7 @@ namespace Anroo.Common.Cli
         public virtual string UsageText { get; }
 
         public IDictionary<string, ValueObject> Args { get; }
-        public bool HelpOptionSpecified => Args["--help"].IsTrue;
+        public bool HelpOptionSpecified => Args[HelpOptionKey].IsTrue;
         public bool DiscoverOptionSpecified => Args[DiscoverOptionKey].IsTrue;
         public string IPOptionValue => Args.ContainsKey(IPOptionKey) ? Args[IPOptionKey]?.ToString() : null;
         public string MacOptionValue => Args.ContainsKey(MacOptionKey) ? Args[MacOptionKey]?.ToString() : null;

@@ -1,12 +1,12 @@
- using System;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Threading.Tasks;
- using Anroo.Common.Extensions;
- using Anroo.Common.Network;
+using Anroo.Common.Extensions;
+using Anroo.Common.Network;
 using DocoptNet;
 
 namespace Anroo.Common.Cli
@@ -34,7 +34,7 @@ namespace Anroo.Common.Cli
                 bool isUpgradeRequired;
                 try
                 {
-                    isUpgradeRequired = (bool) Settings["IsUpgradeRequired"];
+                    isUpgradeRequired = (bool)Settings["IsUpgradeRequired"];
                 }
                 catch (SettingsPropertyNotFoundException)
                 {
