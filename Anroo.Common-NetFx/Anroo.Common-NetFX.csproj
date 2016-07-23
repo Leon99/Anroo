@@ -94,7 +94,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Anroo.Common-Pcl\Anroo.Common-Pcl.csproj">
+    <ProjectReference Include="..\Anroo.Common\Anroo.Common.csproj">
       <Project>{ABF52AAF-791F-47E6-BE76-EBC4C869CAA2}</Project>
       <Name>Anroo.Common-Pcl</Name>
     </ProjectReference>

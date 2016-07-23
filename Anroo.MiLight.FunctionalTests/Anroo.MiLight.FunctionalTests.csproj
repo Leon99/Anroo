@@ -87,11 +87,11 @@
       <Project>{6C04C115-A9F1-4224-9F7C-10FE202A108F}</Project>
       <Name>Anroo.Common-NetFX</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Anroo.Common-Pcl\Anroo.Common-Pcl.csproj">
+    <ProjectReference Include="..\Anroo.Common\Anroo.Common.csproj">
       <Project>{ABF52AAF-791F-47E6-BE76-EBC4C869CAA2}</Project>
       <Name>Anroo.Common-Pcl</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Anroo.MiLight-Pcl\Anroo.MiLight-Pcl.csproj">
+    <ProjectReference Include="..\Anroo.MiLight\Anroo.MiLight.csproj">
       <Project>{C756F342-0361-4F51-A20E-F2E75FF809E5}</Project>
       <Name>Anroo.MiLight-Pcl</Name>
     </ProjectReference>

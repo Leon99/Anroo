@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anroo.Common-Pcl", "Anroo.Common-Pcl\Anroo.Common-Pcl.csproj", "{ABF52AAF-791F-47E6-BE76-EBC4C869CAA2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anroo.Common", "Anroo.Common\Anroo.Common.csproj", "{ABF52AAF-791F-47E6-BE76-EBC4C869CAA2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anroo.Common-NetFX", "Anroo.Common-NetFx\Anroo.Common-NetFX.csproj", "{6C04C115-A9F1-4224-9F7C-10FE202A108F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anroo.MiLight.Tests", "Anroo.MiLight.Tests\Anroo.MiLight.Tests.csproj", "{051CD90F-4C64-4AA7-9E11-7194D8004D18}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anroo.MiLight.FunctionalTests", "Anroo.MiLight.FunctionalTests\Anroo.MiLight.FunctionalTests.csproj", "{051CD90F-4C64-4AA7-9E11-7194D8004D18}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MiLight", "MiLight", "{42791FA4-C241-4FB2-992A-80417E62DCE4}"
 EndProject
@@ -22,15 +22,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anroo.MiLight.Cli.Choco", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OrviboS20", "OrviboS20", "{5EFCE10D-948F-4557-A42E-89A386F5466C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anroo.OrviboS20.Tests", "Anroo.OrviboS20.Tests\Anroo.OrviboS20.Tests.csproj", "{C37373B6-D14B-4951-877A-5B67FBBF8884}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anroo.OrviboS20.FunctionalTests", "Anroo.OrviboS20.FunctionalTests\Anroo.OrviboS20.FunctionalTests.csproj", "{C37373B6-D14B-4951-877A-5B67FBBF8884}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anroo.OrviboS20.Cli", "Anroo.OrviboS20.Cli\Anroo.OrviboS20.Cli.csproj", "{A96E5E43-4E3F-44EE-80C2-A3632538E7EB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anroo.OrviboS20.Cli.Choco", "Anroo.OrviboS20.Cli.Choco\Anroo.OrviboS20.Cli.Choco.csproj", "{A02A11A5-DAEE-4524-85F9-66AEF167238B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anroo.OrviboS20-Pcl", "Anroo.OrviboS20-Pcl\Anroo.OrviboS20-Pcl.csproj", "{7B850516-B74D-477F-A844-3D303C0E6658}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anroo.OrviboS20", "Anroo.OrviboS20\Anroo.OrviboS20.csproj", "{7B850516-B74D-477F-A844-3D303C0E6658}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anroo.MiLight-Pcl", "Anroo.MiLight-Pcl\Anroo.MiLight-Pcl.csproj", "{C756F342-0361-4F51-A20E-F2E75FF809E5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anroo.MiLight", "Anroo.MiLight\Anroo.MiLight.csproj", "{C756F342-0361-4F51-A20E-F2E75FF809E5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anroo.MiLight.Cli", "Anroo.MiLight.Cli\Anroo.MiLight.Cli.csproj", "{D4CDCEB4-CD4F-46E4-AA80-138D71807A76}"
 EndProject

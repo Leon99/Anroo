@@ -54,7 +54,7 @@
     <Compile Include="OrviboS20Ports.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Anroo.Common-Pcl\Anroo.Common-Pcl.csproj">
+    <ProjectReference Include="..\Anroo.Common\Anroo.Common.csproj">
       <Project>{ABF52AAF-791F-47E6-BE76-EBC4C869CAA2}</Project>
       <Name>Anroo.Common-Pcl</Name>
     </ProjectReference>

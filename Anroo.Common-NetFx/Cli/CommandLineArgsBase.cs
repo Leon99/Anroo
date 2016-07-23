@@ -5,7 +5,7 @@ using DocoptNet;
 
 namespace Anroo.Common.Cli
 {
-    public class CommandLineArgsBase
+    public abstract class CommandLineArgsBase
     {
         protected static readonly string AppName = Path.GetFileNameWithoutExtension(Assembly.GetEntryAssembly().GetName().Name);
 
@@ -15,7 +15,7 @@ namespace Anroo.Common.Cli
         protected const string MacOptionKey = "--mac";
         protected const string CommandArgumentKey = "<command>";
 
-        public virtual string UsageText { get; }
+        public abstract string UsageText { get; }
 
         public IDictionary<string, ValueObject> Args { get; }
         public bool HelpOptionSpecified => Args[HelpOptionKey].IsTrue;
@@ -24,7 +24,7 @@ namespace Anroo.Common.Cli
         public string MacOptionValue => Args.ContainsKey(MacOptionKey) ? Args[MacOptionKey]?.ToString() : null;
         public string CommandArgumentValue => Args[CommandArgumentKey]?.ToString();
 
-        public CommandLineArgsBase(ICollection<string> argv, bool help = true,
+        protected CommandLineArgsBase(ICollection<string> argv, bool help = true,
             object version = null, bool optionsFirst = false, bool exit = false)
         {
             Args = new Docopt().Apply(UsageText, argv, help, version, optionsFirst, exit);
