@@ -31,7 +31,7 @@ namespace Anroo.Common.Extensions
 
         public static string ToMacAddressString(this byte[] arr)
         {
-            return arr.Aggregate("", (current, b) => current + b.ToString("X") + "-").RemoveEnd(1);
+            return arr.Aggregate("", (current, b) => current + b.ToString("X") + ":").RemoveEnd(1);
         }
     }
 }
